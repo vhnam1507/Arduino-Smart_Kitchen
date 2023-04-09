@@ -1,0 +1,6 @@
+# Arduino
+/build*/
+*.hex
+*.elf
+*.bin
+*.srec
