@@ -1,13 +1,13 @@
-#include "dht.h"
-#define dht_apin A0
+// #include "dht.h"
+// #define dht_apin A0
 
-#include <Wire.h> 
-#include <LiquidCrystal_I2C.h>
+// #include <Wire.h> 
+// #include <LiquidCrystal_I2C.h>
 
-dht DHT;
-LiquidCrystal_I2C lcd(0X27,16,2); //SCL A5 SDA A4
+// dht DHT;
+// LiquidCrystal_I2C lcd(0X27,16,2); //SCL A5 SDA A4
 
-// void setup()
+// // void setup()
 // {
 //     Serial.begin(9600);
 //     lcd.init();                    
