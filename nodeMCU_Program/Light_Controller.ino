@@ -1,86 +1,47 @@
-#define pin_DS D1
-#define pin_SHCP D2 // 
-#define pin_STCP D3
+// #include <ESP8266WiFi.h>
 
-#define pin_Sw1 D5
-#define pin_Sw2 D6
-#define pin_Sw3 D7
+// const byte PIN_DS = D1;
+// const byte PIN_SHCP = D2;
+// const byte PIN_STCP = D3;
 
-byte leds_Pos = 0B00000000;
+// const byte PIN_SW[] = {D5, D6, D7};
+// const byte PIN_LED[] = {0B00000001, 0B00000010, 0B00000100};
 
-int status_Led1 = 0;
-int status_Led2 = 0;
-int status_Led3 = 0;
+// byte leds_Pos = 0B00000000;
+// byte status_Led[3] = {0, 0, 0};
+// byte previous_Status_Sw[3] = {HIGH, HIGH, HIGH};
 
-int previous_Status_Sw1 = 0;
-int previous_Status_Sw2 = 0;
-int previous_Status_Sw3 = 0;
+// void updateShiftRegister(byte led) {
+//     digitalWrite(PIN_STCP, LOW);
+//     shiftOut(PIN_DS, PIN_SHCP, MSBFIRST, led);
+//     digitalWrite(PIN_STCP, HIGH);
+// }
 
-void updateShiftRegister(byte led) {
-    digitalWrite(pin_STCP, LOW);
-    shiftOut(pin_DS, pin_SHCP, MSBFIRST, led);
-    digitalWrite(pin_STCP, HIGH);
-}
+// void setup() {
+//     pinMode(PIN_SW[0], INPUT_PULLUP);
+//     pinMode(PIN_SW[1], INPUT_PULLUP);
+//     pinMode(PIN_SW[2], INPUT_PULLUP);
+//     pinMode(PIN_STCP, OUTPUT);
+//     pinMode(PIN_SHCP, OUTPUT);
+//     pinMode(PIN_DS, OUTPUT);
+//     Serial.begin(9600);
+// }
 
-void setup() {
-    pinMode(pin_Sw1, INPUT_PULLUP);
-    pinMode(pin_Sw2, INPUT_PULLUP);
-    pinMode(pin_Sw3, INPUT_PULLUP);
-    pinMode(pin_STCP, OUTPUT);
-    pinMode(pin_SHCP, OUTPUT);
-    pinMode(pin_DS, OUTPUT);
-    Serial.begin(9600);
-}
+// void loop() {
+//     for (byte i = 0; i < 3; i++) {
+//         byte status_Sw = digitalRead(PIN_SW[i]);
 
-void loop() {
-    //Thao tác nút nhấn 1 - led 1
-    int status_Sw1 = digitalRead(pin_Sw1);
+//         if (status_Sw != previous_Status_Sw[i]) {
+//             delay(50);
+//             if (status_Sw == LOW) {
+//                 status_Led[i] = !status_Led[i];
+//                 bitWrite(leds_Pos, i, status_Led[i]);
+//                 updateShiftRegister(leds_Pos);
+//             }
+//         }
+//         previous_Status_Sw[i] = status_Sw;
+//     }
 
-    if (status_Sw1 != previous_Status_Sw1) { // Nếu trạng thái nút bấm đã thay đổi
-        delay(50); // Chờ đợi thời gian debounce
-        if (status_Sw1 == 1) { // Nếu nút bấm được nhấn
-            status_Led1 = !status_Led1; // Chuyển đổi trạng thái đèn LED
-            if (status_Led1 == 1)
-                leds_Pos = leds_Pos + 0B00000001; // Cập nhật giá trị độ sáng
-            else
-                leds_Pos = leds_Pos - 0B00000001;
-            updateShiftRegister(leds_Pos); // Cập nhật đầu ra trên IC 74HC595
-        }
-    }
-    previous_Status_Sw1 = status_Sw1; // Lưu trạng thái nút bấm để sử dụng trong vòng lặp tiếp theo
-
-    //Thao tác nút nhấn 2 - led 2
-    int status_Sw2 = digitalRead(pin_Sw2);
-
-    if (status_Sw2 != previous_Status_Sw2) { // Nếu trạng thái nút bấm đã thay đổi
-            delay(50); // Chờ đợi thời gian debounce
-            if (status_Sw2 == 1) { // Nếu nút bấm được nhấn
-                status_Led2 = !status_Led2; // Chuyển đổi trạng thái đèn LED
-                if (status_Led2 == 1)
-                    leds_Pos = leds_Pos + 0B00000010; // Cập nhật giá trị độ sáng
-                else
-                    leds_Pos = leds_Pos - 0B00000010;
-                updateShiftRegister(leds_Pos); // Cập nhật đầu ra trên IC 74HC595
-                }
-        }
-    previous_Status_Sw2 = status_Sw2; // Lưu trạng thái nút bấm để sử dụng trong vòng lặp tiếp theo
-
-    //Thao tác nút nhấn 3 - led 3
-    int status_Sw3 = digitalRead(pin_Sw3);
-
-    if (status_Sw3 != previous_Status_Sw3) { // Nếu trạng thái nút bấm đã thay đổi
-            delay(50); // Chờ đợi thời gian debounce
-            if (status_Sw3 == 1) { // Nếu nút bấm được nhấn
-            status_Led3 =!status_Led3; // Chuyển đổi trạng thái đèn LED
-                if (status_Led3 == 1)
-                    leds_Pos = leds_Pos + 0B00000100; // Cập nhật giá trị độ sáng
-                else
-                    leds_Pos = leds_Pos - 0B00000100;
-                updateShiftRegister(leds_Pos); // Cập nhật đầu ra trên IC 74HC595
-                }
-        }
-    previous_Status_Sw3 = status_Sw3; // Lưu trạng thái nút bấm để sử dụng trong vòng lặp tiếp theo
-
-    Serial.print("Sw1: ");
-    Serial.println(leds_Pos);
-}
+//     Serial.print("Led status: ");
+//     Serial.println(leds_Pos, BIN);
+// }

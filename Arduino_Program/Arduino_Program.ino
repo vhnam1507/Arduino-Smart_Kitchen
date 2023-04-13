@@ -1,12 +1,12 @@
 #include "dht.h"
-const int pin_DHT = A2;
+const int pin_DHT = A2;     
 
 #include <LiquidCrystal_I2C.h>
 
 const int pin_Gas = A0;
 const int pin_Flame = A1;
 const int pin_Servo = 11;
-const int pin_Buzzer = 13;
+const int pin_Buzzer = 4;
 
 const int pin_Pump_ENA = 5; // L298N enable pin
 const int pin_Pump_IN1 = 6; // L298N IN1 pin
