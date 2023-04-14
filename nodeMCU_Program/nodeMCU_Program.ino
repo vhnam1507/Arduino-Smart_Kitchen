@@ -29,23 +29,23 @@ void updateShiftRegister(byte led) {
     digitalWrite(PIN_STCP, HIGH);
 }
 
-  BLYNK_WRITE(V0) {
-    status_Led[0] = param.asInt();
-    bitWrite(leds_Pos, 0, status_Led[0]);
-    updateShiftRegister(leds_Pos);
-  }
+BLYNK_WRITE(V0) {
+  status_Led[0] = param.asInt();
+  bitWrite(leds_Pos, 0, status_Led[0]);
+  updateShiftRegister(leds_Pos);
+}
 
-  BLYNK_WRITE(V1) {
-    status_Led[1] = param.asInt();
-    bitWrite(leds_Pos, 1, status_Led[1]);
-    updateShiftRegister(leds_Pos);
-  }
+BLYNK_WRITE(V1) {
+  status_Led[1] = param.asInt();
+  bitWrite(leds_Pos, 1, status_Led[1]);
+  updateShiftRegister(leds_Pos);
+}
 
-  BLYNK_WRITE(V2) {
-    status_Led[2] = param.asInt();
-    bitWrite(leds_Pos, 2, status_Led[2]);
-    updateShiftRegister(leds_Pos);
-  }
+BLYNK_WRITE(V2) {
+  status_Led[2] = param.asInt();
+  bitWrite(leds_Pos, 2, status_Led[2]);
+  updateShiftRegister(leds_Pos);
+}
 
 void setup()
 {
