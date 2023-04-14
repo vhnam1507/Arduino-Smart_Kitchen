@@ -87,8 +87,8 @@ void loop() {
     clockwise = false;
   }
   if (angle <= 600) {
-    clockwise = true;
+    clockwise = true;   
   }
 
   angle += clockwise ? 1 : -1;
-}
+  }

@@ -87,21 +87,29 @@ void loop() {
     String data = Serial.readStringUntil('\n');
 
     if (data.startsWith("GAS:")) {
+      // Lấy giá trị nhiệt độ từ dữ liệu nhận được
       float gas = data.substring(4).toFloat();
+      // Gửi giá trị nhiệt độ lên dashboard của Blynk
       Blynk.virtualWrite(V6, gas);
     }
 
     if (data.startsWith("FLAME:")) {
+      // Lấy giá trị nhiệt độ từ dữ liệu nhận được
       float flame = data.substring(6).toFloat();
+      // Gửi giá trị nhiệt độ lên dashboard của Blynk
       Blynk.virtualWrite(V5, flame);
     }
 
     if (data.startsWith("TEMP:")) {
+      // Lấy giá trị nhiệt độ từ dữ liệu nhận được
       float temperature = data.substring(5).toFloat();
+      // Gửi giá trị nhiệt độ lên dashboard của Blynk
       Blynk.virtualWrite(V3, temperature);
     }
     if (data.startsWith("HUMI:")) {
+      // Lấy giá trị nhiệt độ từ dữ liệu nhận được
       float humi = data.substring(5).toFloat();
+      // Gửi giá trị nhiệt độ lên dashboard của Blynk
       Blynk.virtualWrite(V4, humi);
     }
   }
