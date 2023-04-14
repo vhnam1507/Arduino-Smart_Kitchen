@@ -1,10 +1,12 @@
 #include "dht.h"
-const int pin_DHT = A2;     
-
+#include<SoftwareSerial.h>
 #include <LiquidCrystal_I2C.h>
+
+SoftwareSerial mySerial(2,3); //TX - RX
 
 const int pin_Gas = A0;
 const int pin_Flame = A1;
+const int pin_DHT = A2;     
 const int pin_Servo = 11;
 const int pin_Buzzer = 4;
 
@@ -27,6 +29,7 @@ const long interval = 5000;
 
 void setup() {
   Serial.begin(9600);
+  mySerial.begin(9600);
   lcd.init();
   lcd.backlight();
   pinMode(pin_Servo, OUTPUT);
@@ -42,12 +45,19 @@ void loop() {
     lcd.setCursor(0, 0);
     lcd.print("Tempe:");
     lcd.print(int(DHT.temperature));
+    mySerial.print("TEMP:");
+    mySerial.println(DHT.temperature);
     lcd.setCursor(0, 1);
     lcd.print("Humi:");
     lcd.print(int(DHT.humidity));
+    Serial.print(DHT.humidity);
+    mySerial.print("HUMI:");
+    mySerial.println(DHT.humidity);
   }
 
   if (digitalRead(pin_Flame) == LOW) {
+    mySerial.print("FLAME:");
+    mySerial.println(1);
     tone(pin_Buzzer, 1000); // phát ra tần số 1000Hz
     
     digitalWrite(pin_Pump_ENA, HIGH); // enable L298N
@@ -56,13 +66,20 @@ void loop() {
     delay(2000); // phát ra âm thanh trong 3 giây
     noTone(pin_Buzzer); // tắt âm thanh
 
+
+
   } else {
     digitalWrite(pin_Pump_ENA, LOW); // disable L298N
     digitalWrite(pin_Pump_IN1, LOW); // turn off motor
     digitalWrite(pin_Pump_IN2, LOW);
+
+    mySerial.print("FLAME:");
+    mySerial.println(0);
   }
   
   if (digitalRead(pin_Gas) == HIGH) {
+    mySerial.print("GAS:");
+    mySerial.println(1);
     tone(pin_Buzzer, 1000); // phát ra tần số 1000Hz
     
     digitalWrite(pin_Fan_ENB, HIGH); // enable L298N
@@ -75,6 +92,9 @@ void loop() {
     digitalWrite(pin_Fan_ENB, LOW); // enable L298N
     digitalWrite(pin_Fan_IN3, LOW); // turn on motor
     digitalWrite(pin_Fan_IN4, LOW);
+
+    mySerial.print("GAS:");
+    mySerial.println(0);
   }
   
 

@@ -1,10 +1,10 @@
 #define BLYNK_PRINT Serial
 #define APP_DEBUG
-
 #define BLYNK_TEMPLATE_ID "TMPL6FbdCQEUR"
 #define BLYNK_TEMPLATE_NAME "Smart Kitchen"
 #define BLYNK_AUTH_TOKEN "1nvFLK6T22b_NzYQt0O1bnan2c_q3Y_z"
 
+#include <SoftwareSerial.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp8266.h>
@@ -12,9 +12,9 @@
 char ssid[] = "Gia Dinh";
 char pass[] = "0966686879@@@";
 
-const byte PIN_DS = D1;
-const byte PIN_SHCP = D2;
-const byte PIN_STCP = D3;
+const byte PIN_DS = D2;
+const byte PIN_SHCP = D3;
+const byte PIN_STCP = D4;
 
 const byte PIN_SW[] = {D5, D6, D7};
 const byte PIN_LED[] = {0B00000001, 0B00000010, 0B00000100};
@@ -49,25 +49,32 @@ void updateShiftRegister(byte led) {
 
 void setup()
 {
-  WiFi.begin(ssid, pass);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-  }
-
-  pinMode(PIN_SW[0], INPUT_PULLUP);
-  pinMode(PIN_SW[1], INPUT_PULLUP);
-  pinMode(PIN_SW[2], INPUT_PULLUP);
-  pinMode(PIN_STCP, OUTPUT);
-  pinMode(PIN_SHCP, OUTPUT);
-  pinMode(PIN_DS, OUTPUT);
-  Serial.begin(115200);
-  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
-  delay(100);
-  Blynk.syncAll();
+    Serial.begin(9600);
+    pinMode(0,INPUT);
+    pinMode(1,INPUT);
+    WiFi.begin(ssid, pass);
+    pinMode(PIN_SW[0], INPUT_PULLUP);
+    pinMode(PIN_SW[1], INPUT_PULLUP);
+    pinMode(PIN_SW[2], INPUT_PULLUP);
+    pinMode(PIN_STCP, OUTPUT);
+    pinMode(PIN_SHCP, OUTPUT);
+    pinMode(PIN_DS, OUTPUT);
+    
+    Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
+    }
+    delay(100);
+    Blynk.syncAll();
 }
 
 void loop() {
-  Blynk.run();
+
+  if (Serial.available() == 0 ) {
+    Blynk.run();
+    Blynk.syncAll();  
+  }
+
   for (byte i = 0; i < 3; i++) {
       byte status_Sw = digitalRead(PIN_SW[i]);
       if (status_Sw != previous_Status_Sw[i]) {
@@ -89,6 +96,7 @@ void loop() {
     if (data.startsWith("GAS:")) {
       float gas = data.substring(4).toFloat();
       Blynk.virtualWrite(V6, gas);
+      Serial.print(gas);
     }
 
     if (data.startsWith("FLAME:")) {
