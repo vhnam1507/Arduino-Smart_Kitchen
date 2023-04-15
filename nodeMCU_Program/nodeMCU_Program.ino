@@ -1,16 +1,16 @@
 #define BLYNK_PRINT Serial
 #define APP_DEBUG
-#define BLYNK_TEMPLATE_ID "TMPL6FbdCQEUR"
+#define BLYNK_TEMPLATE_ID "BLYNK_TEMPLATE_ID"
 #define BLYNK_TEMPLATE_NAME "Smart Kitchen"
-#define BLYNK_AUTH_TOKEN "1nvFLK6T22b_NzYQt0O1bnan2c_q3Y_z"
+#define BLYNK_AUTH_TOKEN "BLYNK_AUTH_TOKEN"
 
 #include <SoftwareSerial.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp8266.h>
 
-char ssid[] = "Gia Dinh";
-char pass[] = "0966686879@@@";
+char ssid[] = "ssid[]";
+char pass[] = "wifi passwords";
 
 const byte PIN_DS = D2;
 const byte PIN_SHCP = D3;
@@ -96,7 +96,6 @@ void loop() {
     if (data.startsWith("GAS:")) {
       float gas = data.substring(4).toFloat();
       Blynk.virtualWrite(V6, gas);
-      Serial.print(gas);
     }
 
     if (data.startsWith("FLAME:")) {
@@ -114,5 +113,3 @@ void loop() {
     }
   }
 }
-
-

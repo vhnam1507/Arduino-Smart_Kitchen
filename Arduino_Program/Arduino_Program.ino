@@ -46,8 +46,8 @@ void loop() {
 
   DHT.read11(pin_DHT); // Read temperature and humidity data11
   lcd.setCursor(0, 0);  // Display temperature on LCD screen
-  lcd.print("Tempe:");
-  lcd.print(int(DHT.temperature));
+  lcd.print("Tempe: ");
+  lcd.print(DHT.temperature);
 
   // Send temperature data to connected device via serial communication
   mySerial.print("TEMP:");
@@ -55,8 +55,8 @@ void loop() {
 
   // Display humidity on LCD screen
   lcd.setCursor(0, 1);
-  lcd.print("Humi:");
-  lcd.print(int(DHT.humidity));
+  lcd.print("Humi: ");
+  lcd.print(DHT.humidity);
 
   // Send humidity data to connected device via serial communication
   Serial.print(DHT.humidity);
@@ -66,7 +66,7 @@ void loop() {
 
   if (digitalRead(pin_Flame) == LOW) {
     mySerial.print("FLAME:");
-    mySerial.println(1);
+    mySerial.println("1");
     tone(pin_Buzzer, 1000); // phát ra tần số 1000Hz
     
     digitalWrite(pin_Pump_ENA, HIGH); // enable L298N
@@ -75,20 +75,18 @@ void loop() {
     delay(2000); // phát ra âm thanh trong 3 giây
     noTone(pin_Buzzer); // tắt âm thanh
 
-
-
   } else {
     digitalWrite(pin_Pump_ENA, LOW); // disable L298N
     digitalWrite(pin_Pump_IN1, LOW); // turn off motor
     digitalWrite(pin_Pump_IN2, LOW);
 
     mySerial.print("FLAME:");
-    mySerial.println(0);
+    mySerial.println("0");
   }
   
   if (digitalRead(pin_Gas) == HIGH) {
     mySerial.print("GAS:");
-    mySerial.println(1);
+    mySerial.println("1");
     tone(pin_Buzzer, 1000); // phát ra tần số 1000Hz
     
     digitalWrite(pin_Fan_ENB, HIGH); // enable L298N
@@ -103,9 +101,8 @@ void loop() {
     digitalWrite(pin_Fan_IN4, LOW);
 
     mySerial.print("GAS:");
-    mySerial.println(0);
+    mySerial.println("0");
   }
-  
 
   digitalWrite(pin_Servo, HIGH);
   delayMicroseconds(angle);
@@ -118,6 +115,5 @@ void loop() {
   if (angle <= 600) { //Change the direction of rotation when the angle reaches 600
     clockwise = true;   
   }
-
   angle += clockwise ? 1 : -1; //angle variable is increased by 1 if clockwise is true, or decreased by 1 if clockwise is false
   }
