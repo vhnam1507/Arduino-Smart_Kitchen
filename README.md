@@ -27,8 +27,8 @@ $\to$ With this project, I hope to contribute to the development of smarter and 
 
 Please follow the steps below to install and set up the code:
 
-1. Connect the [Arduino UNO]() and [NodeMCU2102 ESP 8266]() to your computer.
-2. Open the Arduino IDE and select "Arduino UNO" board and the appropriate port from the "Tools" menu.
+1. Connect the Arduino UNO and NodeMCU2102 ESP 8266 to your computer.
+2. Open the [Arduino IDE](https://www.arduino.cc/en/software) and select "Arduino UNO" board and the appropriate port from the "Tools" menu.
 3. Open the "**Arduino_Program.ino**" file from the downloaded code and upload it to the ***Arduino UNO board.***
 4. Open the "**NodeMCU_Program.ino**" file from the downloaded code and upload it to the ***NodeMCU2102 ESP 8266 board***.
 5. Connect the gas sensor, flame sensor, DHT sensor, servo motor, buzzer, L298N module, pump motor, fan motor, and LCD display to their respective pins as indicated in the "Arduino_Program.ino" file.
