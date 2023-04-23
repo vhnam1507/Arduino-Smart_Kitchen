@@ -64,7 +64,7 @@ Regarding the hardware, I don't think there will be any imposition on your part.
 - With Arduino UNO R3, I use it to manage the monitoring and explosion prevention system.
 - With NodeMCU2102 ESP 8266, I use it to manage the lighting system and perform information synthesis, communicate with Arduino UNO R3, and transmit/receive data with the server.
 
-| IMAGES | |
+| IMAGES | IMAGES |
 | --- | --- |
 | <img src="https://user-images.githubusercontent.com/114226075/233833920-06371826-568f-47e3-b74d-7339b4523cfd.jpg"> | <img src="https://user-images.githubusercontent.com/114226075/233833922-9c50fe01-e7b6-4773-a72f-5e98c9553e24.jpg"> |
 | <img src="https://user-images.githubusercontent.com/114226075/233833924-e4512655-7d2f-46e2-b685-794e3a4d4d90.jpg"> | <img src="https://user-images.githubusercontent.com/114226075/233833926-032064f9-21d9-4d24-9a86-59e5e2a2e910.jpg"> |
