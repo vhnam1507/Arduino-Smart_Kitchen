@@ -10,6 +10,8 @@ An IoT project utilizing the **ARDUINO UNO R3** board.
 
 Welcome to my IoT project **"Smart Kitchen"** which I personally researched and designed. This project **focuses mainly on the automatic fire prevention and extinguishing system in the kitchen** with some simple functions such as automatic fan opening, automatic pump opening, automatic alarm ringing, and more. In addition, users can also control the electrical lighting system through a dashboard **from anywhere as long as there is an Internet connection** *(dashboard provided by Blynk)*.
 
+![Smart-Kitchen model diagram](https://user-images.githubusercontent.com/114226075/233833899-8fcba57f-2b36-458d-b213-cd041e20e9e2.png)
+
 The project consists of two important components, the ***Arduino Uno R3*** and ***nodeMCU2102 ESP8266***:
 
 - The Arduino board plays the role of processing information received from analog ports connected to sensors, and then generates events to handle specific situations.
@@ -59,8 +61,15 @@ Here's a guide on how to set up your Blynk dashboard to display information from
 
 Regarding the hardware, I don't think there will be any imposition on your part. In this project, I have assembled and designed the hardware with two "main" components, which are Arduino UNO R3 and NodeMCU2102 ESP 8266.
 
-- With Arduino UNO R3, I use it to manage the monitoring and explosion prevention system. 
+- With Arduino UNO R3, I use it to manage the monitoring and explosion prevention system.
 - With NodeMCU2102 ESP 8266, I use it to manage the lighting system and perform information synthesis, communicate with Arduino UNO R3, and transmit/receive data with the server.
+
+| IMAGES | |
+| --- | --- |
+| <img src="https://user-images.githubusercontent.com/114226075/233833920-06371826-568f-47e3-b74d-7339b4523cfd.jpg"> | <img src="https://user-images.githubusercontent.com/114226075/233833922-9c50fe01-e7b6-4773-a72f-5e98c9553e24.jpg"> |
+| <img src="https://user-images.githubusercontent.com/114226075/233833924-e4512655-7d2f-46e2-b685-794e3a4d4d90.jpg"> | <img src="https://user-images.githubusercontent.com/114226075/233833926-032064f9-21d9-4d24-9a86-59e5e2a2e910.jpg"> |
+| <img src="https://user-images.githubusercontent.com/114226075/233833927-276816e2-d2cf-489f-9e66-74eb67414c16.jpg"> | <img src="https://user-images.githubusercontent.com/114226075/233833929-6476916f-e178-4899-a99d-1877ab2220c9.jpg"> |
+| <img src="https://user-images.githubusercontent.com/114226075/233833930-2ffb86a9-2aa9-4210-a9a3-520f18abdcb3.jpg"> | <img src="https://user-images.githubusercontent.com/114226075/233833931-872aea08-f6a6-4022-9dbb-e54ff911947e.jpg"> |
 
 In addition, I also use some components to ensure the convenience of the user as well as to ensure the ability to collect information from the environment in the kitchen, to ensure the ability to upgrade and manage, and to optimize the ports of Arduino UNO R3 and NodeMCU2102:
 
